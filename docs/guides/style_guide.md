@@ -16,6 +16,10 @@ All method names are written in **snake_case**. That is: First letter of the met
 
 > def my_epic_method():
 
+Methods could be privated. Such as:
+
+> def __my_epic__private_method():
+
 ---
 
 ## Attribute names:
