@@ -57,7 +57,7 @@ Documentation of the project is automatically generated using ```sphinx```.
 Dependencies are dumped in the ```requirements.txt``` file. If a new dependency is added, the whole file must be updated like this:
 
 ```cmd
-pip freeze >> requirements.txt
+pip freeze > requirements.txt
 ```
 
 A *virtual enviroment* **must** be used for this in order to prevent incompatibility between dependencies.
