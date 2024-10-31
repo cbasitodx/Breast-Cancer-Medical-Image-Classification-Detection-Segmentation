@@ -20,10 +20,9 @@ doc:
 
 # Creates virtualenv and installs dependencies
 env:
-	(\ 
+	(\
 		echo -e "\n --------------- CREATING VIRTUALENV --------------- \n"; \
-		pip3 install virtualenv; \
-		virtualenv venv; \
+		python3.10 -m venv venv; \
 		echo -e "\n --------------- VIRTUALENV CREATED --------------- \n"; \
 		echo -e "\n --------------- ACTIVATING VIRTUALENV --------------- \n"; \
 		source venv/bin/activate; \
