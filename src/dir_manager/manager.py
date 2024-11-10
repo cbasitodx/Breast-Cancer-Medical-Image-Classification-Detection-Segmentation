@@ -48,12 +48,15 @@ class DirectoryManager:
             miclase.cosa()
 
 
-    (borrame) MÁS INFORMACIÓN AQUÍ: https://docutils.sourceforge.io/docs/user/rst/quickref.html
+        (borrame) MÁS INFORMACIÓN AQUÍ: https://docutils.sourceforge.io/docs/user/rst/quickref.html
+    
+        """
 
-    """
-
-    def __init__(self):
-        self.__root_paths = ["./dataset/test/", "./dataset/train/", "./dataset/valid/"]
+    def __init__(self, dataset_folder_path : str):
+        """
+            TODO: PONER AQUI (O EN EL COMENTARIO DE ARRIBA) QUE SE ESPERA QUE dataset_folder_path TENGA LA ESTRUCTURA QUE TIENE
+        """
+        self.__root_paths = [f"{dataset_folder_path}/test/", f"{dataset_folder_path}/train/", f"{dataset_folder_path}/valid/"]
         self.__n_datasets = len(self.__root_paths)
 
     def manage_directories(self) -> None:
@@ -67,53 +70,55 @@ class DirectoryManager:
 
             The original directories are:
 
-            ```cmd
-            dataset
-            ├── test
-            │   ├── images
-            │   └── labels
-            ├── train
-            │   ├── images
-            │   └── labels
-            └── valid
-                ├── images
-                └── labels
-            ```
+            .. code-block:: shell
+
+                dataset
+                ├── test
+                │   ├── images
+                │   └── labels
+                ├── train
+                │   ├── images
+                │   └── labels
+                └── valid
+                    ├── images
+                    └── labels
+            
             The new directories will be:
 
-            ```cmd
-            dataset
-            ├── test
-            │   ├── classification
-            │   │   ├── bounding_boxes
-            │   │   │   ├── cancer
-            │   │   │   └── no_cancer
-            │   │   └── images
-            │   │       ├── cancer
-            │   │       └── no_cancer
-            │   ├── images
-            │   └── labels
-            ├── train
-            │   ├── classification
-            │   │   ├── bounding_boxes
-            │   │   │   ├── cancer
-            │   │   │   └── no_cancer
-            │   │   └── images
-            │   │       ├── cancer
-            │   │       └── no_cancer
-            │   ├── images
-            │   └── labels
-            └── valid
-                ├── classification
-                │   ├── bounding_boxes
-                │   │   ├── cancer
-                │   │   └── no_cancer
-                │   └── images
-                │       ├── cancer
-                │       └── no_cancer
-                ├── images
-                └── labels
-            ```    
+            .. code-block:: shell
+            
+                dataset
+                ├── test
+                │   ├── classification
+                │   │   ├── bounding_boxes
+                │   │   │   ├── cancer
+                │   │   │   └── no_cancer
+                │   │   └── images
+                │   │       ├── cancer
+                │   │       └── no_cancer
+                │   ├── images
+                │   └── labels
+                ├── train
+                │   ├── classification
+                │   │   ├── bounding_boxes
+                │   │   │   ├── cancer
+                │   │   │   └── no_cancer
+                │   │   └── images
+                │   │       ├── cancer
+                │   │       └── no_cancer
+                │   ├── images
+                │   └── labels
+                └── valid
+                    ├── classification
+                    │   ├── bounding_boxes
+                    │   │   ├── cancer
+                    │   │   └── no_cancer
+                    │   └── images
+                    │       ├── cancer
+                    │       └── no_cancer
+                    ├── images
+                    └── labels
+               
         """
 
         self.__create_dirs()
