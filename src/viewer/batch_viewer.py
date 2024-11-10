@@ -1,4 +1,4 @@
-import typing
+from .single_viewer import SingleViewer
 
 
 class BatchViewer:
@@ -7,125 +7,43 @@ class BatchViewer:
     **Summary**
     ===========
 
-        (borrame) Aqui un resumen de la clase
+        This class is used to visualize a batch of images and their bounding boxes.
 
     ==============
     **Parameters**
     ==============
 
-        (borrame) Aqui una descripcion de los parametros del constructor 
-
-        * **nombre:** (*tipo*) Descripcion.
-        * **nombre:** (*tipo*) Descripcion.
+        * **file_names:** (*list*) The names of the files without the extension.
+        * **dataset:** (*str*) The dataset to get the images and labels from.
+        * **titles:** (*str | list*) The titles of the windows. If it is a string, the title will be the string
+            concatenated with the index of the image.
 
     ======================
     **Instance Variables**
     ======================
 
-        (borrame) Aqui una descripcion de los atributos (publicos y privados) de la clase
-
-         * **nombre:** (*tipo*) Descripcion.
-         * **nombre:** (*tipo*) Descripcion.
+        * **__viewers:** (*list*) -- The list of SingleViewer objects.
 
     ===========
     **Example**
     ===========
 
-        (borrame) Aqui un ejemplo de uso de la clase (opcional)
-
-        >>> miclase = Clase()
-        >>> miclase.cosa()
-        >>> 3
-
-        (borrame) O bien...
-
-        .. code-block:: python
-
-            # Comentario de python
-
-            miclase = Clase()
-            miclase.cosa()
-
-
-    (borrame) MÁS INFORMACIÓN AQUÍ: https://docutils.sourceforge.io/docs/user/rst/quickref.html
+        >>> viewer = BatchViewer(["1", "2"], "train", "Image")
+        >>> viewer.plot_imgs()
+        >>> viewer.plot_bounding_boxes()
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, file_names: list, dataset: str, titles: str | list[str]):
+        if isinstance(titles, str):
+            titles = [f"{titles} {i}" for i in range(len(file_names))]
 
-    def plot_single_image(self):
-        """
-        ===========
-        **Summary**
-        ===========
+        self.__viewers = [SingleViewer(file_name, dataset, title) for file_name, title in zip(file_names, titles)]
 
-            (borrame) Aqui un resumen del metodo
+    def plot_imgs(self):
+        for viewer in self.__viewers:
+            viewer.plot_img()
 
-        ==============
-        **Parameters**
-        ==============
-
-            (borrame) Aqui una descripcion de los parametros del metodo
-
-            * **nombre:** (*tipo*) Descripcion.
-            * **nombre:** (*tipo*) Descripcion.       
-        """
-        pass
-
-    def plot_batch(self):
-        """
-        ===========
-        **Summary**
-        ===========
-
-            (borrame) Aqui un resumen del metodo
-
-        ==============
-        **Parameters**
-        ==============
-
-            (borrame) Aqui una descripcion de los parametros del metodo
-
-            * **nombre:** (*tipo*) Descripcion.
-            * **nombre:** (*tipo*) Descripcion.       
-        """
-        pass
-
-    def plot_single_bounding_box(self):
-        """
-        ===========
-        **Summary**
-        ===========
-
-            (borrame) Aqui un resumen del metodo
-
-        ==============
-        **Parameters**
-        ==============
-
-            (borrame) Aqui una descripcion de los parametros del metodo
-
-            * **nombre:** (*tipo*) Descripcion.
-            * **nombre:** (*tipo*) Descripcion.       
-        """
-        pass
-
-    def plot_batch_bounding_box(self):
-        """
-        ===========
-        **Summary**
-        ===========
-
-            (borrame) Aqui un resumen del metodo
-
-        ==============
-        **Parameters**
-        ==============
-
-            (borrame) Aqui una descripcion de los parametros del metodo
-
-            * **nombre:** (*tipo*) Descripcion.
-            * **nombre:** (*tipo*) Descripcion.       
-        """
-        pass
+    def plot_bounding_boxes(self):
+        for viewer in self.__viewers:
+            viewer.plot_bounding_box()
