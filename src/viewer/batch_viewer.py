@@ -1,6 +1,7 @@
 import typing
 
-class Visualizer:
+
+class BatchViewer:
     """
     ===========
     **Summary**
@@ -45,7 +46,7 @@ class Visualizer:
             miclase = Clase()
             miclase.cosa()
 
-            
+
     (borrame) MÁS INFORMACIÓN AQUÍ: https://docutils.sourceforge.io/docs/user/rst/quickref.html
 
     """
@@ -58,15 +59,15 @@ class Visualizer:
         ===========
         **Summary**
         ===========
-    
+
             (borrame) Aqui un resumen del metodo
-    
+
         ==============
         **Parameters**
         ==============
-    
+
             (borrame) Aqui una descripcion de los parametros del metodo
-    
+
             * **nombre:** (*tipo*) Descripcion.
             * **nombre:** (*tipo*) Descripcion.       
         """
@@ -77,15 +78,15 @@ class Visualizer:
         ===========
         **Summary**
         ===========
-    
+
             (borrame) Aqui un resumen del metodo
-    
+
         ==============
         **Parameters**
         ==============
-    
+
             (borrame) Aqui una descripcion de los parametros del metodo
-    
+
             * **nombre:** (*tipo*) Descripcion.
             * **nombre:** (*tipo*) Descripcion.       
         """
@@ -96,34 +97,34 @@ class Visualizer:
         ===========
         **Summary**
         ===========
-    
+
             (borrame) Aqui un resumen del metodo
-    
+
         ==============
         **Parameters**
         ==============
-    
+
             (borrame) Aqui una descripcion de los parametros del metodo
-    
+
             * **nombre:** (*tipo*) Descripcion.
             * **nombre:** (*tipo*) Descripcion.       
         """
         pass
-    
+
     def plot_batch_bounding_box(self):
         """
         ===========
         **Summary**
         ===========
-    
+
             (borrame) Aqui un resumen del metodo
-    
+
         ==============
         **Parameters**
         ==============
-    
+
             (borrame) Aqui una descripcion de los parametros del metodo
-    
+
             * **nombre:** (*tipo*) Descripcion.
             * **nombre:** (*tipo*) Descripcion.       
         """
