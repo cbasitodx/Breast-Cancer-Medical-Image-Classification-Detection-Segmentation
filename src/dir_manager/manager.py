@@ -1,4 +1,4 @@
-from os import mkdir, walk
+from os import mkdir, walk, environ
 from shutil import copy2
 
 
@@ -8,71 +8,14 @@ class DirectoryManager:
     **Summary**
     ===========
 
-        (borrame) Aqui un resumen de la clase
+        This class manages the directories of the dataset. It creates the directories needed for the project from the
+        original directories of the dataset.
 
-    ==============
-    **Parameters**
-    ==============
+        The user must have the original dataset. It follows the structure:
 
-        (borrame) Aqui una descripcion de los parametros del constructor 
+        .. code-block:: shell
 
-        * **nombre:** (*tipo*) Descripcion.
-        * **nombre:** (*tipo*) Descripcion.
-
-    ======================
-    **Instance Variables**
-    ======================
-
-        (borrame) Aqui una descripcion de los atributos (publicos y privados) de la clase
-
-         * **nombre:** (*tipo*) Descripcion.
-         * **nombre:** (*tipo*) Descripcion.
-
-    ===========
-    **Example**
-    ===========
-
-        (borrame) Aqui un ejemplo de uso de la clase (opcional)
-
-        >>> miclase = Clase()
-        >>> miclase.cosa()
-        >>> 3
-
-        (borrame) O bien...
-
-        .. code-block:: python
-
-            # Comentario de python
-
-            miclase = Clase()
-            miclase.cosa()
-
-
-        (borrame) MÁS INFORMACIÓN AQUÍ: https://docutils.sourceforge.io/docs/user/rst/quickref.html
-    
-        """
-
-    def __init__(self, dataset_folder_path : str):
-        """
-            TODO: PONER AQUI (O EN EL COMENTARIO DE ARRIBA) QUE SE ESPERA QUE dataset_folder_path TENGA LA ESTRUCTURA QUE TIENE
-        """
-        self.__root_paths = [f"{dataset_folder_path}/test/", f"{dataset_folder_path}/train/", f"{dataset_folder_path}/valid/"]
-        self.__n_datasets = len(self.__root_paths)
-
-    def manage_directories(self) -> None:
-        """
-        ===========
-        **Summary**
-        ===========
-
-            This method creates all the directories and copies on the tree on the dataset 
-            needed for the project.
-
-            The original directories are:
-
-            .. code-block:: shell
-
-                dataset
+            dataset
                 ├── test
                 │   ├── images
                 │   └── labels
@@ -82,11 +25,11 @@ class DirectoryManager:
                 └── valid
                     ├── images
                     └── labels
-            
-            The new directories will be:
 
-            .. code-block:: shell
-            
+        The new directories will be:
+
+        .. code-block:: shell
+
                 dataset
                 ├── test
                 │   ├── classification
@@ -118,7 +61,87 @@ class DirectoryManager:
                     │       └── no_cancer
                     ├── images
                     └── labels
-               
+
+    ==============
+    **Parameters**
+    ==============
+
+        * **dataset_folder_path:** (*str*) The path to the dataset folder.
+
+    ======================
+    **Instance Variables**
+    ======================
+
+        * **__root_paths:** (*list[str]*) -- The paths to the test, train, and valid directories.
+        * **__n_datasets:** (*int*) -- The number of datasets.
+
+
+    """
+
+    def __init__(self, dataset_folder_path: str):
+        self.__root_paths = [f"{dataset_folder_path}/test/", f"{dataset_folder_path}/train/", f"{dataset_folder_path}/valid/"]
+        self.__n_datasets = len(self.__root_paths)
+
+    def manage_directories(self) -> None:
+        """
+        ===========
+        **Summary**
+        ===========
+
+            This method creates all the directories and copies on the tree on the dataset 
+            needed for the project.
+
+            The original directories are:
+
+            .. code-block:: shell
+
+                dataset
+                ├── test
+                │   ├── images
+                │   └── labels
+                ├── train
+                │   ├── images
+                │   └── labels
+                └── valid
+                    ├── images
+                    └── labels
+
+            The new directories will be:
+
+            .. code-block:: shell
+
+                dataset
+                ├── test
+                │   ├── classification
+                │   │   ├── bounding_boxes
+                │   │   │   ├── cancer
+                │   │   │   └── no_cancer
+                │   │   └── images
+                │   │       ├── cancer
+                │   │       └── no_cancer
+                │   ├── images
+                │   └── labels
+                ├── train
+                │   ├── classification
+                │   │   ├── bounding_boxes
+                │   │   │   ├── cancer
+                │   │   │   └── no_cancer
+                │   │   └── images
+                │   │       ├── cancer
+                │   │       └── no_cancer
+                │   ├── images
+                │   └── labels
+                └── valid
+                    ├── classification
+                    │   ├── bounding_boxes
+                    │   │   ├── cancer
+                    │   │   └── no_cancer
+                    │   └── images
+                    │       ├── cancer
+                    │       └── no_cancer
+                    ├── images
+                    └── labels
+
         """
 
         self.__create_dirs()
