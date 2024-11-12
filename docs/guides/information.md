@@ -71,3 +71,5 @@ A *virtual enviroment* **must** be used for this in order to prevent incompatibi
 2. [Quick reStructuredText](https://docutils.sourceforge.io/docs/user/rst/quickref.html) 
 
 3. [Conventional Commit Guide](https://www.conventionalcommits.org/en/v1.0.0/#summary)
+
+4. [ResNet Paper](https://arxiv.org/abs/1512.03385)
