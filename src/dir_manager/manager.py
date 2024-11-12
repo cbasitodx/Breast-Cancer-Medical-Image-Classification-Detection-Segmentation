@@ -16,51 +16,51 @@ class DirectoryManager:
         .. code-block:: shell
 
             dataset
-                ├── test
-                │   ├── images
-                │   └── labels
-                ├── train
-                │   ├── images
-                │   └── labels
-                └── valid
-                    ├── images
-                    └── labels
+            ├── test
+            │   ├── images
+            │   └── labels
+            ├── train
+            │   ├── images
+            │   └── labels
+            └── valid
+                ├── images
+                └── labels
 
         The new directories will be:
 
         .. code-block:: shell
 
-                dataset
-                ├── test
-                │   ├── classification
-                │   │   ├── bounding_boxes
-                │   │   │   ├── cancer
-                │   │   │   └── no_cancer
-                │   │   └── images
-                │   │       ├── cancer
-                │   │       └── no_cancer
-                │   ├── images
-                │   └── labels
-                ├── train
-                │   ├── classification
-                │   │   ├── bounding_boxes
-                │   │   │   ├── cancer
-                │   │   │   └── no_cancer
-                │   │   └── images
-                │   │       ├── cancer
-                │   │       └── no_cancer
-                │   ├── images
-                │   └── labels
-                └── valid
-                    ├── classification
-                    │   ├── bounding_boxes
-                    │   │   ├── cancer
-                    │   │   └── no_cancer
-                    │   └── images
-                    │       ├── cancer
-                    │       └── no_cancer
-                    ├── images
-                    └── labels
+            dataset
+            ├── test
+            │   ├── classification
+            │   │   ├── bounding_boxes
+            │   │   │   ├── cancer
+            │   │   │   └── no_cancer
+            │   │   └── images
+            │   │       ├── cancer
+            │   │       └── no_cancer
+            │   ├── images
+            │   └── labels
+            ├── train
+            │   ├── classification
+            │   │   ├── bounding_boxes
+            │   │   │   ├── cancer
+            │   │   │   └── no_cancer
+            │   │   └── images
+            │   │       ├── cancer
+            │   │       └── no_cancer
+            │   ├── images
+            │   └── labels
+            └── valid
+                ├── classification
+                │   ├── bounding_boxes
+                │   │   ├── cancer
+                │   │   └── no_cancer
+                │   └── images
+                │       ├── cancer
+                │       └── no_cancer
+                ├── images
+                └── labels
 
     ==============
     **Parameters**
