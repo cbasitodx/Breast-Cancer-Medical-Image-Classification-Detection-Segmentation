@@ -59,13 +59,13 @@ class SingleViewer(IViewer):
 
     def __init__(self, file_name: str, dataset: str, title: str):
         # Get the image and label path
-        self.__image_path = f"./dataset/{dataset}/images/{file_name}.jpg"
-        self.__label_path = f"./dataset/{dataset}/labels/{file_name}.txt"
+        self.__image_path = f"../dataset/{dataset}/images/{file_name}.jpg"
+        self.__label_path = f"../dataset/{dataset}/labels/{file_name}.txt"
 
-        self.__image = cv.imread(self.__image_path)
+        self.__image : np.ndarray = cv.imread(self.__image_path)
         self.__width, self.__height = self.__image.shape[:2]
-
-        self.__title = title
+        
+        self.__title : str = title
 
         self.__tummor_coordinates: tuple | None = None
 
