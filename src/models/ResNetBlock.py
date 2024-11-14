@@ -51,11 +51,13 @@ class ResNetBlock(nn.Module):
             padding=paddings[2])
         modules_dict[f"batchnorm{index}_3"] = nn.BatchNorm2d(num_features=out_channels)
 
-        # Store the identity downsample module object as an attribute for later use
-        self.identity_channel_scaling : nn.Module = identity_channel_scaling
-
-        # Create the block a module object
+        # Create the block module object
         self.block : nn.Sequential = nn.Sequential(modules_dict)
+        
+        self.relu = nn.ReLU()
+
+        # Store the identity channel module object as an attribute for later use
+        self.identity_channel_scaling : nn.Module | None = identity_channel_scaling
 
     def forward(self, x : torch.Tensor) -> torch.Tensor:
         # Store the original input in order to add it at the end of the block
@@ -64,14 +66,14 @@ class ResNetBlock(nn.Module):
         # Pass the input through the block
         x = self.block(x)
 
-        # Check if the input was downsampled. In that case, downsample the identity
+        # Check if the number of channels of the input was changed. In that case, change the identity
         if self.identity_channel_scaling != None:
             identity = self.identity_channel_scaling(identity)
 
-        # Add the forwarded input and the original input (downsampled if needed)
+        # Add the forwarded input and the original input
         x += identity
 
         # Pass through the ReLU activation function
-        x = nn.ReLU(x)
+        x = self.relu(x)
 
         return x

@@ -102,10 +102,9 @@ class ClassificationModel(nn.Module):
 
         # We perform channel scaling between blocks and between layers.
         # Its only going to be performed when the block has a stride different from 1 and when the number of input channels doesnt match the number of output channels (intermediate_channels * expansion)
-        if mid_module_stride != 1 or self.in_channels != (intermediate_channels * expansion):
+        if mid_module_stride != 1 or self.in_channels != intermediate_channels * expansion:
 
             out_channels_block : int = intermediate_channels * expansion
-            
             identity_channel_scaling : nn.Module | None = nn.Sequential(collections.OrderedDict([
                 (
                     f"conv_scaling{index}",
@@ -140,12 +139,12 @@ class ClassificationModel(nn.Module):
 
         # Lastly, append the last blocks.
         # For instance, in the first layer of ResNet50, these last blocks go from 256ch -> 64ch -> 256ch
-        # (identity_channel_scaling is set to None because its not needed anymore)
+        # (identity_channel_scaling is set to None because its not needed anymore, and stride is set to 1 because we are not doing any more channel_scaling)
         for i in range(1, n_reps):
             blocks.append(
                 (
                     f"block{index}_{i+1}",
-                    ResNetBlock(index, self.in_channels, intermediate_channels, expansion, kernel_sizes, mid_module_stride, paddings, None)
+                    ResNetBlock(index, self.in_channels, intermediate_channels, expansion, kernel_sizes, 1, paddings, None)
                 )
             )
          
