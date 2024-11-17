@@ -19,7 +19,7 @@ class ClassificationModel(nn.Module):
         self.conv1_layer : nn.Sequential = nn.Sequential(collections.OrderedDict([
             (
                 'conv1_1',
-                nn.Conv2d(in_channels=input_image_channels,out_channels=self.in_channels,kernel_size=7,stride=2,padding=3)
+                nn.Conv2d(in_channels=input_image_channels,out_channels=self.in_channels,kernel_size=7,stride=2,padding=3, bias=False)
             ),
             (
                 'batchnorm1_1',

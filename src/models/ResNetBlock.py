@@ -30,7 +30,8 @@ class ResNetBlock(nn.Module):
             out_channels=intermediate_channels,
             kernel_size=kernel_sizes[0],
             stride=1,
-            padding=paddings[0])
+            padding=paddings[0],
+            bias=False)
         modules_dict[f"batchnorm{index}_1"] = nn.BatchNorm2d(num_features=intermediate_channels)
 
         modules_dict[f"conv{index}_2"] = nn.Conv2d(
@@ -38,7 +39,8 @@ class ResNetBlock(nn.Module):
             out_channels=intermediate_channels,
             kernel_size=kernel_sizes[1],
             stride=mid_module_stride,
-            padding=paddings[1])
+            padding=paddings[1],
+            bias=False)
         modules_dict[f"batchnorm{index}_2"] = nn.BatchNorm2d(num_features=intermediate_channels)
 
         out_channels : int = intermediate_channels * expansion
@@ -48,7 +50,8 @@ class ResNetBlock(nn.Module):
             out_channels=out_channels,
             kernel_size=kernel_sizes[2],
             stride=1,
-            padding=paddings[2])
+            padding=paddings[2],
+            bias=False)
         modules_dict[f"batchnorm{index}_3"] = nn.BatchNorm2d(num_features=out_channels)
 
         # Create the block module object
