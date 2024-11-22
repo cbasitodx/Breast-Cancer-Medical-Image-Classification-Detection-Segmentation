@@ -1,4 +1,4 @@
-from os import mkdir, walk, environ
+from os import mkdir, walk
 from shutil import copy2
 
 
@@ -16,51 +16,51 @@ class DirectoryManager:
         .. code-block:: shell
 
             dataset
-                ├── test
-                │   ├── images
-                │   └── labels
-                ├── train
-                │   ├── images
-                │   └── labels
-                └── valid
-                    ├── images
-                    └── labels
+            ├── test
+            │   ├── images
+            │   └── labels
+            ├── train
+            │   ├── images
+            │   └── labels
+            └── valid
+                ├── images
+                └── labels
 
         The new directories will be:
 
         .. code-block:: shell
 
-                dataset
-                ├── test
-                │   ├── classification
-                │   │   ├── bounding_boxes
-                │   │   │   ├── cancer
-                │   │   │   └── no_cancer
-                │   │   └── images
-                │   │       ├── cancer
-                │   │       └── no_cancer
-                │   ├── images
-                │   └── labels
-                ├── train
-                │   ├── classification
-                │   │   ├── bounding_boxes
-                │   │   │   ├── cancer
-                │   │   │   └── no_cancer
-                │   │   └── images
-                │   │       ├── cancer
-                │   │       └── no_cancer
-                │   ├── images
-                │   └── labels
-                └── valid
-                    ├── classification
-                    │   ├── bounding_boxes
-                    │   │   ├── cancer
-                    │   │   └── no_cancer
-                    │   └── images
-                    │       ├── cancer
-                    │       └── no_cancer
-                    ├── images
-                    └── labels
+            dataset
+            ├── test
+            │   ├── classification
+            │   │   ├── bounding_boxes
+            │   │   │   ├── cancer
+            │   │   │   └── no_cancer
+            │   │   └── images
+            │   │       ├── cancer
+            │   │       └── no_cancer
+            │   ├── images
+            │   └── labels
+            ├── train
+            │   ├── classification
+            │   │   ├── bounding_boxes
+            │   │   │   ├── cancer
+            │   │   │   └── no_cancer
+            │   │   └── images
+            │   │       ├── cancer
+            │   │       └── no_cancer
+            │   ├── images
+            │   └── labels
+            └── valid
+                ├── classification
+                │   ├── bounding_boxes
+                │   │   ├── cancer
+                │   │   └── no_cancer
+                │   └── images
+                │       ├── cancer
+                │       └── no_cancer
+                ├── images
+                └── labels
 
     ==============
     **Parameters**
@@ -75,7 +75,6 @@ class DirectoryManager:
         * **__root_paths:** (*list[str]*) -- The paths to the test, train, and valid directories.
         * **__n_datasets:** (*int*) -- The number of datasets.
 
-
     """
 
     def __init__(self, dataset_folder_path: str):
@@ -88,59 +87,8 @@ class DirectoryManager:
         **Summary**
         ===========
 
-            This method creates all the directories and copies on the tree on the dataset 
-            needed for the project.
-
-            The original directories are:
-
-            .. code-block:: shell
-
-                dataset
-                ├── test
-                │   ├── images
-                │   └── labels
-                ├── train
-                │   ├── images
-                │   └── labels
-                └── valid
-                    ├── images
-                    └── labels
-
-            The new directories will be:
-
-            .. code-block:: shell
-
-                dataset
-                ├── test
-                │   ├── classification
-                │   │   ├── bounding_boxes
-                │   │   │   ├── cancer
-                │   │   │   └── no_cancer
-                │   │   └── images
-                │   │       ├── cancer
-                │   │       └── no_cancer
-                │   ├── images
-                │   └── labels
-                ├── train
-                │   ├── classification
-                │   │   ├── bounding_boxes
-                │   │   │   ├── cancer
-                │   │   │   └── no_cancer
-                │   │   └── images
-                │   │       ├── cancer
-                │   │       └── no_cancer
-                │   ├── images
-                │   └── labels
-                └── valid
-                    ├── classification
-                    │   ├── bounding_boxes
-                    │   │   ├── cancer
-                    │   │   └── no_cancer
-                    │   └── images
-                    │       ├── cancer
-                    │       └── no_cancer
-                    ├── images
-                    └── labels
+            This method manages the directories of the dataset. It creates the classification directories and
+            subdirectories and copies the images and labels to their respective directories.
 
         """
 
