@@ -6,6 +6,10 @@ import numpy as np
 import torch
 import torch.nn as nn # neural network
 
+
+#Define exportable elements
+__all__ = ['ResNet50','ResNet101','ResNet152','ResNet']
+
 # Structure of one of the blocks on the table
 # output = 4 * input (is going to be expansion * input with expansion = 4)
 
@@ -129,19 +133,37 @@ class ResNet(nn.Module):
 
 
 # define the diferent resNets (50, 101 and 152 layer)
-# only difference is the num of times the blocks are used on each conv layer (see table on paper) -> layers list argument
-def ResNet50(img_channels = 3, num_classes = 1000):
-    return ResNet(block, [3,4,6,3], img_channels, num_classes)
+## only difference is the num of times the blocks are used on each conv layer (see table on paper) -> layers list argument
+#
+#
+#def ResNet50(img_channels = 3, num_classes = 1000):
+#    return ResNet(block, [3,4,6,3], img_channels, num_classes)
+#
+#def ResNet101(img_channels = 3, num_classes = 1000):
+#    return ResNet(block, [3,4,23,3], img_channels, num_classes)
+#
+#def ResNet152(img_channels = 3, num_classes = 1000):
+#    return ResNet(block, [3,8,36,3], img_channels, num_classes)
 
-def ResNet101(img_channels = 3, num_classes = 1000):
-    return ResNet(block, [3,4,23,3], img_channels, num_classes)
 
-def ResNet152(img_channels = 3, num_classes = 1000):
-    return ResNet(block, [3,8,36,3], img_channels, num_classes)
+class ResNet50(ResNet):
+    def __init__(self, img_channels = 3, num_classes = 1000):
+        super().__init__(block, [3,4,6,3], img_channels, num_classes)
+
+class ResNet101(ResNet):
+    def __init__(self, img_channels = 3, num_classes = 1000):
+        super().__init__(block, [3,4,23,3], img_channels, num_classes)
+
+class ResNet152(ResNet):
+    def __init__(self, img_channels = 3, num_classes = 1000):
+        super().__init__(block, [3,8,36,3], img_channels, num_classes)
+
 
 
 
 def test():
+
+
     BATCH_SIZE = 4
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     net = ResNet152(img_channels=3, num_classes=1000)
